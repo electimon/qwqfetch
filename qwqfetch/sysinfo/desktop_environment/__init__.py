@@ -1,12 +1,16 @@
 from __future__ import annotations
 from ... import global_vars
 
-sys_name = global_vars.get(["platform"])[0]["name"]
+platform_info = global_vars.get(["platform"])[0]
+sys_name = platform_info["name"]
+sys_arch = platform_info["arch"]
 
 
 def get() -> dict[str, str]:
     if sys_name == "Windows":
         de_name = "Windows Shell"
+    elif sys_name == "Darwin" and "iPhone" in sys_arch:
+        de_name = ""
     elif sys_name == "Darwin":
         de_name = "Aqua"
     elif sys_name == "Linux":

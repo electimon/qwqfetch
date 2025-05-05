@@ -21,6 +21,8 @@ def get() -> dict[str, str]:
         from .linux import get_cpu_info
     elif sys_name == "Windows":
         from .windows import get_cpu_info
+    elif sys_name == "Darwin" and "iPhone" in sys_arch:
+        from .ios import get_cpu_info
     elif sys_name == "Darwin":
         from .macos import get_cpu_info
     else:
@@ -35,9 +37,10 @@ def get() -> dict[str, str]:
         output.append(f"{info['count']}x")
     if info.get("name"):
         output.append(strip_name(info["name"]))
-    if "core" in info and info["core"] > 1:
+    if "core" in info and info["core"] > 0:
         output.append(f"({info['core']})")
     if info.get("freq"):
         output.append(f"@ {info['freq'] / 1000_000:.2f} GHz")
 
     return {"CPU": " ".join(output)}
+

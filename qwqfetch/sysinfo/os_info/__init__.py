@@ -9,6 +9,8 @@ def get() -> dict[str, str]:
 
     if sys_name == "Linux":
         from .linux import info
+    elif sys_name == "Darwin" and "iPhone" in sys_arch:
+        from .ios import info
     elif sys_name == "Darwin":
         from .macos import info
     elif sys_name == "Windows":

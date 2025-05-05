@@ -3,13 +3,16 @@ from ... import global_vars
 
 
 def get() -> dict[str, str]:
-
-    sys_name = global_vars.get(["platform"])[0]["name"]
+    platform_info = global_vars.get(["platform"])[0]
+    sys_name = platform_info["name"]
+    sys_arch = platform_info["arch"]
 
     if sys_name == "Linux":
         from .linux import memory_used, memory_all
     elif sys_name == "Windows":
         from .windows import memory_used, memory_all
+    elif sys_name == "Darwin" and "iPhone" in sys_arch:
+        from .ios import memory_used, memory_all
     elif sys_name == "Darwin":
         from .macos import memory_used, memory_all
     else:

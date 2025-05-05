@@ -21,6 +21,7 @@ modules_name_list = [
     "terminal",
     "uptime",
     "username",
+    "python",
 ]
 
 

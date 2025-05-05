@@ -18,4 +18,5 @@ default_result = [
     "CPU",
     "GPU",
     "Memory",
+    "Python",
 ]
